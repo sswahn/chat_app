@@ -1,0 +1,160 @@
+.main {
+  margin: 0 auto;
+  position: relative;
+  max-width: 800px;
+}
+
+.input {
+  background: white;
+  bottom: 0;
+  max-width: 800px;
+  padding-bottom: 25px;
+  position: fixed;
+  width: 100%;
+}
+
+.input .textarea {
+  background: white;
+  border: 1px solid #222;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  font-size: 16px;
+  min-height: 50px;
+  outline: none;
+  padding: 13px 10px 0 10px;
+  resize: none;
+  width: 100%;
+}
+
+.input .textarea:empty:before {
+  color: #999;
+  content: attr(data-placeholder);
+  cursor: text;
+}
+
+.input > div:last-child { /* toolbar */
+  background: #eee;
+  border: 1px solid #222;
+  border-top: 2px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: -5px;
+}
+
+.input div div button {
+  background: none;
+  border: 0;
+  border-radius: 3px;
+  color: gray;
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.input div div button:hover {
+  background: #ccc;
+}
+
+.input div div button[type=submit] {
+  padding: 5px 20px;
+}
+.input div div button[type=submit]:hover {
+  background: #007a5a;
+  color: white;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  background-color: #444;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  left: 50%;
+  padding: 10px 0;
+  position: absolute;
+  text-align: center;
+  top: -175%;
+  margin-left: -45px;
+  visibility: hidden;
+  width: 90px;
+  z-index: 1;
+}
+
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #444 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+
+
+
+
+.feed {
+  padding-bottom: 125px;
+  min-width: 800px;
+  width: 100%;
+}
+
+.feed article {
+  border: 1px solid #ccc; /* forces parent to contain children (dont remove) */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.feed article:hover {
+  background: #eee;
+}
+
+.feed header {
+  display: flex;
+  padding: 10px 0;
+}
+
+.feed header img {
+  background: black;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+.feed header button {
+  background: none;
+  border: 0;
+  font-size: 18px;
+  font-weight: bold;
+  height: 20px;
+  margin: 0 10px;
+}
+
+.feed header time {
+  color: #777;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.feed div {
+  font-size: 18px;
+  margin: -30px 0 0 60px;
+}

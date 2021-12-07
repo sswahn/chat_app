@@ -1,0 +1,63 @@
+
+.dropdown {
+  width: 45px;
+  height: 45px;
+}
+
+.dropdown > button {
+  background: none;
+  border: 0;
+  color: black;
+  font-size: 18px;
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.dropdown > button:active {
+  background: none;
+}
+
+.dropdown > div {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: none;
+  padding: 10px 0 20px 0;
+  position: absolute;
+  right: -210px;
+  top: 30px;
+  width: 200px;
+  z-index: 9999;
+}
+
+.dropdown > div div,
+.dropdown > div button {
+  background: none;
+  border: 0;
+  color: black;
+  display: block;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: left;
+  width: 100%;
+}
+
+.dropdown > div button:hover {
+  background: #eee;
+}
+
+.dropdown > div div span,
+.dropdown > div button span {
+  margin-left: 20px;
+}
+
+@media all and (max-width: 500px) {
+  .dropdown > div {
+    left: 50%;
+    bottom: 25%;
+    transform: translate(-50%, -25%);
+  }
+}
