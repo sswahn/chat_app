@@ -46,36 +46,6 @@ export default () => {
   //   setState({ stored_text: '' })
   // }
 
-  // TODO: refer to existing code in aws for cognito syntax
-  const postRequest = async element => {
-    const token = cookie.get('token')
-    const session = cookie.decode(token)
-    const user = { username: session['cognito:username'], avatar: session['cognito:picture'] }
-    const request = { user, message: element.innerHTML }
-    const response = await server.post(config.api.create.message, request)
-    if (!response.error) {
-      return alert('Please enter text to leave a message.')
-    }
-    dispatch({ type: 'update', payload: response.message })
-    element.textContent = ''
-    element.focus()
-    store.remove('text')
-  }
-
-  const handleKeyDown = async event => {
-    store.set('text', event.target.outerText)
-    event.keyCode === 13 && handleSubmit(event)
-  }
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    const element = document.getElementById('textarea')
-    !element.textContent 
-      ? alert('Please enter text to leave a message.')
-      : postRequest(element)
-  }
-
-  /////////
 /*
   const handleSubmit = async event => {
     event.preventDefault()
@@ -101,6 +71,34 @@ export default () => {
   }
   */
 
+    // TODO: refer to existing code in aws for cognito syntax
+    const postRequest = async element => {
+      const token = cookie.get('token')
+      const session = cookie.decode(token)
+      const user = { username: session['cognito:username'], avatar: session['cognito:picture'] }
+      const request = { user, message: element.innerHTML }
+      const response = await server.post(config.api.create.message, request)
+      if (!response.error) {
+        return alert(response.error.message)
+      }
+      dispatch({ type: 'update', payload: response.message })
+      element.textContent = ''
+      element.focus()
+      store.remove('text')
+    }
+  
+    const handleKeyDown = async event => {
+      store.set('text', event.target.outerText)
+      event.keyCode === 13 && handleSubmit(event)
+    }
+  
+    const handleSubmit = event => {
+      event.preventDefault()
+      const element = document.getElementById('textarea')
+      !element.textContent 
+        ? alert('Please enter text to leave a message.')
+        : postRequest(element)
+    }
 
   return (
     <form className={styles.input} 
