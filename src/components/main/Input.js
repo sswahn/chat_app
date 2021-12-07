@@ -21,36 +21,32 @@ export default () => {
     emoji: false
   })
 
-  const handleKeyDown = async event => {
-    store.set('text', event.target.outerText)
-    if (event.keyCode !== 13) {
-      return
-    }
-    event.preventDefault()
-    const textarea = document.getElementById('textarea')
-    if (!textarea.textContent) {
-      return alert('Please enter text to leave a message.')
-    }
-    const request = {
-      user: 'Steve',
-      message: textarea.textContent
-    }
-    const response = await server.post(config.api.create.message, request)
-    if (response.error !== undefined) {
-      return alert('There was a system error.', response.error.message)
-    }
-    textarea.textContent = ''
-    dispatch({ type: 'update', payload: response.message })
-    textarea.focus()
-    store.remove('text')
-    setState({ stored_text: '' })
-  }
-
-  /// 
-  /// move to functions file?
+  // const handleKeyDown = async event => {
+  //   store.set('text', event.target.outerText)
+  //   if (event.keyCode !== 13) {
+  //     return
+  //   }
+  //   event.preventDefault()
+  //   const textarea = document.getElementById('textarea')
+  //   if (!textarea.textContent) {
+  //     return alert('Please enter text to leave a message.')
+  //   }
+  //   const request = {
+  //     user: 'Steve',
+  //     message: textarea.textContent
+  //   }
+  //   const response = await server.post(config.api.create.message, request)
+  //   if (response.error !== undefined) {
+  //     return alert('There was a system error.', response.error.message)
+  //   }
+  //   textarea.textContent = ''
+  //   dispatch({ type: 'update', payload: response.message })
+  //   textarea.focus()
+  //   store.remove('text')
+  //   setState({ stored_text: '' })
+  // }
 
   // TODO: refer to existing code in aws for cognito syntax
-
   const postRequest = async element => {
     const token = cookie.get('token')
     const session = cookie.decode(token)
@@ -66,8 +62,12 @@ export default () => {
     store.remove('text')
   }
 
-  // replaces handleSubmit
-  const newSubmit = event => {
+  const handleKeyDown = async event => {
+    store.set('text', event.target.outerText)
+    event.keyCode === 13 && handleSubmit(event)
+  }
+
+  const handleSubmit = event => {
     event.preventDefault()
     const element = document.getElementById('textarea')
     !element.textContent 
@@ -76,7 +76,7 @@ export default () => {
   }
 
   /////////
-
+/*
   const handleSubmit = async event => {
     event.preventDefault()
     const textarea = document.getElementById('textarea')
@@ -99,6 +99,7 @@ export default () => {
     store.remove('text')
     setState({ stored_text: '' })
   }
+  */
 
 
   return (
